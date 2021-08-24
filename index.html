@@ -1,176 +1,102 @@
 <!DOCTYPE html>
-<html>
-
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/19.2.6/js/dx.all.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/19.2.6/css/dx.common.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/19.2.6/css/dx.light.css"/>
-    <script src="index.js"></script>
+    <title>DevExtreme Demo</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.5/css/dx.common.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.5/css/dx.light.css" />
+    <script src="https://cdn3.devexpress.com/jslib/21.1.5/js/dx.all.js"></script>
     <script src="data.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script src="index.js"></script>
 </head>
-
-<body>
-<div id="chart1"></div>
-<div id="chart2"></div>
-<div id="chart3"></div>
-<div id="chart4"></div>
-<div id="chart5"></div>
-</body>
-
-<script>
-    $(function(){
-        $("#chart1").dxPieChart({
-        type: "doughnut",
-        size: {
-            height: 1000
-        },
-        palette: "Soft Pastel",
-        dataSource: populationData,
-        title: "The Population of Continents and Regions",
-        tooltip: {
-            enabled: true,
-            format: "millions",
-        },
+<body class="dx-viewport">
+    <div class="demo-container">
+        <div class="long-title"><h3>Energy Production (GWh, 2016)</h3></div>
+        <div class="pies-container">
+            <div id="countries"></div>
+            <div id="waterLandRatio"></div>
+        </div>
+    </div>
+    <script>
+    $(function () {
+   
+    var formatNumber = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 }).format;
+    var commonSettings = {
+        innerRadius: 0.65,
+        resolveLabelOverlapping: "shift",
+        sizeGroup: "piesGroup",
         legend: {
-            horizontalAlignment: "right",
-            verticalAlignment: "top",
-            margin: 0
+            visible: false
         },
-        "export": {
-            enabled: true
-        },
-        series: [{        
-            argumentField: "region",
-        }]
-        });
-        $("#chart2").dxChart({
-            dataSource: populationData,
-            size: {
-                height: 800
-            },
-            legend: {
-                visible: false
-            },
-            series: {
-                type: "bar"
-            },
-            argumentAxis: {
-                tickInterval: 10,
-                label: {
-                    format: {
-                        type: "decimal"
-                    }
+        type: "doughnut",
+        series: [{
+            argumentField: "commodity",
+            valueField: "total",
+            label: {
+                visible: true,
+                connector: {
+                    visible: true
+                },
+                format: "fixedPoint",
+                backgroundColor: "none",
+                customizeText: function(e) {
+                    return e.argumentText + "\n" + e.valueText;
                 }
-            },
-            title: "World Population by Decade"
-        });
-        $("#chart3").dxChart({
-            dataSource: populationData,
-            size: {
-                height: 700
-            },
-            legend: {
-                visible: false
-            },
-            series: {
-                type: "bar"
-            },
-            argumentAxis: {
-                tickInterval: 10,
-                label: {
-                    format: {
-                        type: "decimal"
-                    }
-                }
-            },
-            title: "World Population by Decade"
-        });
-        $("#chart4").dxChart({
-            dataSource: populationData,
-            size: {
-                height: 600
-            },
-            legend: {
-                visible: false
-            },
-            series: {
-                type: "bar"
-            },
-            argumentAxis: {
-                tickInterval: 10,
-                label: {
-                    format: {
-                        type: "decimal"
-                    }
-                }
-            },
-            title: "World Population by Decade"
-        });
-        $("#chart5").dxChart({
-            dataSource: populationData,
-            size: {
-                height: 500
-            },
-            legend: {
-                visible: false
-            },
-            series: {
-                type: "bar"
-            },
-            argumentAxis: {
-                tickInterval: 10,
-                label: {
-                    format: {
-                        type: "decimal"
-                    }
-                }
-            },
-            title: "World Population by Decade"
-        });
-    });
+            }
+        }],
+        centerTemplate: function(pieChart, container) { 
+            var total = pieChart.getAllSeries()[0].getVisiblePoints().reduce(function(s, p) { return s + p.originalValue; }, 0),
+                country = pieChart.getAllSeries()[0].getVisiblePoints()[0].data.country,
+                content = $('<svg><circle cx="100" cy="100" fill="#eee" r="' + (pieChart.getInnerRadius() - 6) + '"></circle>' +
+                    '<image x="70" y="58" width="60" height="40" href="' + "images/flags/" + country.replace(/\s/, "").toLowerCase() + ".svg" + '"/>' +
+                    '<text text-anchor="middle" style="font-size: 18px" x="100" y="120" fill="#494949">' +
+                    '<tspan x="100" >' + country + '</tspan>' +
+                    '<tspan x="100" dy="20px" style="font-weight: 600">' +
+                    formatNumber(total) +
+                    '</tspan></text></svg>');
+            
+            container.appendChild(content.get(0));
+        }
+    };
 
-    var populationData = [{
-        arg: 1960,
-        val: 3032019978
-    }, {
-        arg: 1970,
-        val: 3683676306
-    }, {
-        arg: 1980,
-        val: 4434021975
-    }, {
-        arg: 1990,
-        val: 5281340078
-    }, {
-        arg: 2000,
-        val: 6115108363
-    }, {
-        arg: 2010,
-        val: 6922947261
-    }, {
-        arg: 2020,
-        val: 7795000000
-    }];
-    var dataSource = [{
-    region: "Asia",
-    val: 4119626293
-}, {
-    region: "Africa",
-    val: 1012956064
-}, {
-    region: "Northern America",
-    val: 344124520
-}, {
-    region: "Latin America and the Caribbean",
-    val: 590946440
-}, {
-    region: "Europe",
-    val: 727082222
-}, {
-    region: "Oceania",
-    val: 35104756
-}];
-</script>
+    $("#countries")
+        .dxPieChart($.extend({}, commonSettings, {
+            dataSource: {
+                store: data,
+                filter: ["country", "=", "France"]
+            }
+        }));
 
+    $("#waterLandRatio")
+        .dxPieChart($.extend({}, commonSettings, {
+            dataSource: {
+                store: data,
+                filter: ["country", "=", "Germany"]
+            }
+        }));
+    
+});
+        var data = [
+    { country: "France", commodity: "Nuclear", total: 403195 },
+    { country: "Germany", commodity: "Nuclear", total: 84634 },
+    { country: "India", commodity: "Nuclear", total: 37916 },
+    { country: "France", commodity: "Thermal", total: 57471 },
+    { country: "Germany", commodity: "Thermal", total: 419591 },
+    { country: "India", commodity: "Thermal", total: 1188280 },
+    { country: "France", commodity: "Wind", total: 21400 },
+    { country: "Germany", commodity: "Wind", total: 78598 },
+    { country: "India", commodity: "Wind", total: 35530 },
+    { country: "France", commodity: "Solar", total: 8160 },
+    { country: "Germany", commodity: "Solar", total: 38098 },
+    { country: "India", commodity: "Solar", total: 12578 },
+    { country: "France", commodity: "Tidal, Wave", total: 501 }
+];
+
+    </script>
+</body>
 </html>
