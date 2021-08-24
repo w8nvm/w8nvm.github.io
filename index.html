@@ -20,26 +20,29 @@
 
 <script>
     $(function(){
-        $("#chart1").dxChart({
-            dataSource: populationData,
-            size: {
-                height: 1000
-            },
-            legend: {
-                visible: false
-            },
-            series: {
-                type: "bar"
-            },
-            argumentAxis: {
-                tickInterval: 10,
-                label: {
-                    format: {
-                        type: "decimal"
-                    }
-                }
-            },
-            title: "World Population by Decade"
+        $("#chart1").dxPieChart({
+        type: "doughnut",
+        size: {
+            height: 1000
+        },
+        palette: "Soft Pastel",
+        dataSource: dataSource,
+        title: "The Population of Continents and Regions",
+        tooltip: {
+            enabled: true,
+            format: "millions",
+        },
+        legend: {
+            horizontalAlignment: "right",
+            verticalAlignment: "top",
+            margin: 0
+        },
+        "export": {
+            enabled: true
+        },
+        series: [{        
+            argumentField: "region",
+        }]
         });
         $("#chart2").dxChart({
             dataSource: populationData,
