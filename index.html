@@ -15,120 +15,183 @@
     <script src="index.js"></script>
 </head>
 <body class="dx-viewport">
-    <div class="demo-container">
-        <div id="chart-demo">
-            <div id="chart"></div>
-            <div class="options">
-                <div class="caption">Options</div>
-                <div class="option">              
-                    <span>Series Type</span>
-                    <div id="types"></div>
-                </div>    
-            </div>
-        </div>
+    <div class="dx-viewport demo-container">
+        <div id="gridContainer"></div>
     </div>
     <script> 
     $(function(){
-    var dataSource = [{
-    country: "USA",
-    hydro: 59.8,
-    oil: 937.6,
-    gas: 582,
-    coal: 564.3,
-    nuclear: 187.9
-}, {
-    country: "China",
-    hydro: 74.2,
-    oil: 308.6,
-    gas: 35.1,
-    coal: 956.9,
-    nuclear: 11.3
-}, {
-    country: "Russia",
-    hydro: 40,
-    oil: 128.5,
-    gas: 361.8,
-    coal: 105,
-    nuclear: 32.4
-}, {
-    country: "Japan",
-    hydro: 22.6,
-    oil: 241.5,
-    gas: 64.9,
-    coal: 120.8,
-    nuclear: 64.8
-}, {
-    country: "India",
-    hydro: 19,
-    oil: 119.3,
-    gas: 28.9,
-    coal: 204.8,
-    nuclear: 3.8
-}, {
-    country: "Germany",
-    hydro: 6.1,
-    oil: 123.6,
-    gas: 77.3,
-    coal: 85.7,
-    nuclear: 37.8
-}];
-
-var types = ["line", "stackedline", "fullstackedline"];    
-        
-    var chart = $("#chart").dxChart({
-        palette: "Violet",
-        dataSource: dataSource,
-        commonSeriesSettings: {
-            argumentField: "country",
-            type: types[0]
-        },
-        size: {
-            height: 1500
-        },
-        margin: {
-            bottom: 20
-        },
-        argumentAxis: {
-            valueMarginsEnabled: false,
-            discreteAxisDivisionMode: "crossLabels",
-            grid: {
-                visible: true
-            }
-        },
-        series: [
-            { valueField: "hydro", name: "Hydro-electric" },
-            { valueField: "oil", name: "Oil" },
-            { valueField: "gas", name: "Natural gas" },
-            { valueField: "coal", name: "Coal" },
-            { valueField: "nuclear", name: "Nuclear" }
-        ],
-        legend: {
-            verticalAlignment: "bottom",
-            horizontalAlignment: "center",
-            itemTextPosition: "bottom"
-        },
-        title: { 
-            text: "Energy Consumption in 2004",
-            subtitle: {
-                text: "(Millions of Tons, Oil Equivalent)"
-            }
-        },
-        "export": {
-            enabled: true
-        },
-        tooltip: {
-            enabled: true
-        }
-    }).dxChart("instance");
-    
-    $("#types").dxSelectBox({
-        dataSource: types,
-        value: types[0],
-        onValueChanged: function(e){
-            chart.option("commonSeriesSettings.type", e.value);
-        }
-    });
+  $("#gridContainer").dxDataGrid({
+    dataSource: customers,
+    width: 500,
+    keyExpr: 'ID',
+    columns: ["CompanyName",
+              {
+                dataField: "Amount",
+                caption: "Sweden currency",
+                format: {
+                  style: "currency",
+                  currency: "SEK",
+                  currencyDisplay: 'narrowSymbol'
+                },
+                
+              }, {
+                dataField: "Amount1",
+                caption: "Poland currency",
+                format: {
+                  style: "currency",
+                  currency: 'PLN', 
+                  currencyDisplay: 'narrowSymbol'
+                }
+              }],
+    showBorders: true
+  });
 });
+
+var customers = [{
+  "ID": 1,
+  "CompanyName": "Super Mart of the West",
+  "Address": "702 SW 8th Street",
+  "City": "Bentonville",
+  "State": "Arkansas",
+  "Zipcode": 72716,
+  "Phone": "(800) 555-2797",
+  "Fax": "(800) 555-2171",
+  "Website": "http://www.nowebsitesupermart.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 2,
+  "CompanyName": "Electronics Depot",
+  "Address": "2455 Paces Ferry Road NW",
+  "City": "Atlanta",
+  "State": "Georgia",
+  "Zipcode": 30339,
+  "Phone": "(800) 595-3232",
+  "Fax": "(800) 595-3231",
+  "Website": "http://www.nowebsitedepot.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 3,
+  "CompanyName": "K&S Music",
+  "Address": "1000 Nicllet Mall",
+  "City": "Minneapolis",
+  "State": "Minnesota",
+  "Zipcode": 55403,
+  "Phone": "(612) 304-6073",
+  "Fax": "(612) 304-6074",
+  "Website": "http://www.nowebsitemusic.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 4,
+  "CompanyName": "Tom's Club",
+  "Address": "999 Lake Drive",
+  "City": "Issaquah",
+  "State": "Washington",
+  "Zipcode": 98027,
+  "Phone": "(800) 955-2292",
+  "Fax": "(800) 955-2293",
+  "Website": "http://www.nowebsitetomsclub.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 5,
+  "CompanyName": "E-Mart",
+  "Address": "3333 Beverly Rd",
+  "City": "Hoffman Estates",
+  "State": "Illinois",
+  "Zipcode": 60179,
+  "Phone": "(847) 286-2500",
+  "Fax": "(847) 286-2501",
+  "Website": "http://www.nowebsiteemart.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 6,
+  "CompanyName": "Walters",
+  "Address": "200 Wilmot Rd",
+  "City": "Deerfield",
+  "State": "Illinois",
+  "Zipcode": 60015,
+  "Phone": "(847) 940-2500",
+  "Fax": "(847) 940-2501",
+  "Website": "http://www.nowebsitewalters.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 7,
+  "CompanyName": "StereoShack",
+  "Address": "400 Commerce S",
+  "City": "Fort Worth",
+  "State": "Texas",
+  "Zipcode": 76102,
+  "Phone": "(817) 820-0741",
+  "Fax": "(817) 820-0742",
+  "Website": "http://www.nowebsiteshack.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 8,
+  "CompanyName": "Circuit Town",
+  "Address": "2200 Kensington Court",
+  "City": "Oak Brook",
+  "State": "Illinois",
+  "Zipcode": 60523,
+  "Phone": "(800) 955-2929",
+  "Fax": "(800) 955-9392",
+  "Website": "http://www.nowebsitecircuittown.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 9,
+  "CompanyName": "Premier Buy",
+  "Address": "7601 Penn Avenue South",
+  "City": "Richfield",
+  "State": "Minnesota",
+  "Zipcode": 55423,
+  "Phone": "(612) 291-1000",
+  "Fax": "(612) 291-2001",
+  "Website": "http://www.nowebsitepremierbuy.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 10,
+  "CompanyName": "ElectrixMax",
+  "Address": "263 Shuman Blvd",
+  "City": "Naperville",
+  "State": "Illinois",
+  "Zipcode": 60563,
+  "Phone": "(630) 438-7800",
+  "Fax": "(630) 438-7801",
+  "Website": "http://www.nowebsiteelectrixmax.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 11,
+  "CompanyName": "Video Emporium",
+  "Address": "1201 Elm Street",
+  "City": "Dallas",
+  "State": "Texas",
+  "Zipcode": 75270,
+  "Phone": "(214) 854-3000",
+  "Fax": "(214) 854-3001",
+  "Website": "http://www.nowebsitevideoemporium.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}, {
+  "ID": 12,
+  "CompanyName": "Screen Shop",
+  "Address": "1000 Lowes Blvd",
+  "City": "Mooresville",
+  "State": "North Carolina",
+  "Zipcode": 28117,
+  "Phone": "(800) 445-6937",
+  "Fax": "(800) 445-6938",
+  "Website": "http://www.nowebsitescreenshop.com",
+  "Amount": 10000,
+  "Amount1": 10000
+}];
     </script>
 </body>
 </html>
