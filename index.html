@@ -1,197 +1,116 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <title>DevExtreme Demo</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>window.jQuery || document.write(decodeURIComponent('%3Cscript src="js/jquery.min.js"%3E%3C/script%3E'))</script>
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.5/css/dx.common.css" />
-    <link rel="stylesheet" type="text/css" href="https://cdn3.devexpress.com/jslib/21.1.5/css/dx.light.css" />
-    <script src="https://cdn3.devexpress.com/jslib/21.1.5/js/dx.all.js"></script>
-    <script src="data.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles.css" />
-    <script src="index.js"></script>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 </head>
-<body class="dx-viewport">
-    <div class="dx-viewport demo-container">
-        <div id="gridContainer"></div>
-    </div>
-    <script> 
-    $(function(){
-  $("#gridContainer").dxDataGrid({
-    dataSource: customers,
-    width: 500,
-    keyExpr: 'ID',
-    columns: ["CompanyName",
-              {
-                dataField: "Amount",
-                caption: "Sweden currency",
-                format: {
-                  style: "currency",
-                  currency: "SEK",
-                  currencyDisplay: 'symbol'
-                },
-                
-              }, {
-                dataField: "Amount1",
-                caption: "Poland currency",
-                format: {
-                  style: "currency",
-                  currency: 'PLN', 
-                  currencyDisplay: 'name'
-                }
-              }],
-    showBorders: true
-  });
-});
+<body class="Site">
+<header class="Site-header">
+    <h1 class="header-Title">Logo(?)</h1>
+    <h2 class="header-Title">Test task no js</h2>
+</header>
 
-var customers = [{
-  "ID": 1,
-  "CompanyName": "Super Mart of the West",
-  "Address": "702 SW 8th Street",
-  "City": "Bentonville",
-  "State": "Arkansas",
-  "Zipcode": 72716,
-  "Phone": "(800) 555-2797",
-  "Fax": "(800) 555-2171",
-  "Website": "http://www.nowebsitesupermart.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 2,
-  "CompanyName": "Electronics Depot",
-  "Address": "2455 Paces Ferry Road NW",
-  "City": "Atlanta",
-  "State": "Georgia",
-  "Zipcode": 30339,
-  "Phone": "(800) 595-3232",
-  "Fax": "(800) 595-3231",
-  "Website": "http://www.nowebsitedepot.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 3,
-  "CompanyName": "K&S Music",
-  "Address": "1000 Nicllet Mall",
-  "City": "Minneapolis",
-  "State": "Minnesota",
-  "Zipcode": 55403,
-  "Phone": "(612) 304-6073",
-  "Fax": "(612) 304-6074",
-  "Website": "http://www.nowebsitemusic.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 4,
-  "CompanyName": "Tom's Club",
-  "Address": "999 Lake Drive",
-  "City": "Issaquah",
-  "State": "Washington",
-  "Zipcode": 98027,
-  "Phone": "(800) 955-2292",
-  "Fax": "(800) 955-2293",
-  "Website": "http://www.nowebsitetomsclub.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 5,
-  "CompanyName": "E-Mart",
-  "Address": "3333 Beverly Rd",
-  "City": "Hoffman Estates",
-  "State": "Illinois",
-  "Zipcode": 60179,
-  "Phone": "(847) 286-2500",
-  "Fax": "(847) 286-2501",
-  "Website": "http://www.nowebsiteemart.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 6,
-  "CompanyName": "Walters",
-  "Address": "200 Wilmot Rd",
-  "City": "Deerfield",
-  "State": "Illinois",
-  "Zipcode": 60015,
-  "Phone": "(847) 940-2500",
-  "Fax": "(847) 940-2501",
-  "Website": "http://www.nowebsitewalters.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 7,
-  "CompanyName": "StereoShack",
-  "Address": "400 Commerce S",
-  "City": "Fort Worth",
-  "State": "Texas",
-  "Zipcode": 76102,
-  "Phone": "(817) 820-0741",
-  "Fax": "(817) 820-0742",
-  "Website": "http://www.nowebsiteshack.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 8,
-  "CompanyName": "Circuit Town",
-  "Address": "2200 Kensington Court",
-  "City": "Oak Brook",
-  "State": "Illinois",
-  "Zipcode": 60523,
-  "Phone": "(800) 955-2929",
-  "Fax": "(800) 955-9392",
-  "Website": "http://www.nowebsitecircuittown.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 9,
-  "CompanyName": "Premier Buy",
-  "Address": "7601 Penn Avenue South",
-  "City": "Richfield",
-  "State": "Minnesota",
-  "Zipcode": 55423,
-  "Phone": "(612) 291-1000",
-  "Fax": "(612) 291-2001",
-  "Website": "http://www.nowebsitepremierbuy.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 10,
-  "CompanyName": "ElectrixMax",
-  "Address": "263 Shuman Blvd",
-  "City": "Naperville",
-  "State": "Illinois",
-  "Zipcode": 60563,
-  "Phone": "(630) 438-7800",
-  "Fax": "(630) 438-7801",
-  "Website": "http://www.nowebsiteelectrixmax.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 11,
-  "CompanyName": "Video Emporium",
-  "Address": "1201 Elm Street",
-  "City": "Dallas",
-  "State": "Texas",
-  "Zipcode": 75270,
-  "Phone": "(214) 854-3000",
-  "Fax": "(214) 854-3001",
-  "Website": "http://www.nowebsitevideoemporium.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}, {
-  "ID": 12,
-  "CompanyName": "Screen Shop",
-  "Address": "1000 Lowes Blvd",
-  "City": "Mooresville",
-  "State": "North Carolina",
-  "Zipcode": 28117,
-  "Phone": "(800) 445-6937",
-  "Fax": "(800) 445-6938",
-  "Website": "http://www.nowebsitescreenshop.com",
-  "Amount": 10000,
-  "Amount1": 10000
-}];
-    </script>
+<main class="Site-content">
+    <div class="Site-users">
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+        <div class="User-element">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <span class="User-name">John Doe</span>
+        </div>
+
+    </div>
+    <div class="Site-chat">
+        <div class="Chat-message">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <p>Hello. How are you today?</p>
+            <span class="time-right">11:00</span>
+        </div>
+
+        <div class="Chat-message darker">
+            <img src="https://html5css.ru/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
+            <p>Hey! I'm fine. Thanks for asking!</p>
+            <span class="time-left">11:01</span>
+        </div>
+
+        <div class="Chat-message">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <p>Sweet! So, what do you wanna do today?</p>
+            <span class="time-right">11:02</span>
+        </div>
+
+        <div class="Chat-message darker">
+            <img src="https://html5css.ru/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
+            <p>Nah, I dunno. Play soccer.. or learn more coding perhaps?</p>
+            <span class="time-left">11:05</span>
+        </div>
+
+        <div class="Chat-message">
+            <img src="https://html5css.ru/w3images/bandmember.jpg" alt="Avatar" style="width:100%;">
+            <p>Good! Have a great time!</p>
+            <span class="time-right">11:02</span>
+        </div>
+
+        <div class="Chat-message darker">
+            <img src="https://html5css.ru/w3images/avatar_g2.jpg" alt="Avatar" class="right" style="width:100%;">
+            <p>Thanks :)</p>
+            <span class="time-left">11:05</span>
+        </div>
+
+    </div>
+</main>
+
+<footer class="Site-footer">
+    <div class="footer-right">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#"><i class="fa fa-twitter"></i></a>
+        <a href="#"><i class="fa fa-linkedin"></i></a>
+        <a href="#"><i class="fa fa-github"></i></a>
+
+    </div>
+</footer>
 </body>
 </html>
